@@ -27,7 +27,9 @@ if __name__ == "__main__":
                         choices=["add", "rm", "ls"])
     parser.add_argument("name", metavar="name", type=str, nargs="?",
                         help="Name of the note, required for add and rm")
+    # TODO document those
     parser.add_argument("-m", metavar="-m", type=str)
+    parser.add_argument("-f", metavar="-f", type=str)
     args = parser.parse_args()
 
     if not is_valid_args(args):
@@ -49,4 +51,4 @@ if __name__ == "__main__":
             exit(error_code.NO_NOTE)
 
     elif args.command == "ls":
-        print(commands.ls(), end="")
+        print(commands.ls(**vars(args)), end="")
